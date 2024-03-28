@@ -3,14 +3,16 @@
 # Check if Docker is installed
 if ! command -v docker &> /dev/null; then
     echo "Error: Docker is not installed. Please install Docker to continue."
-    echo "Instructions to install Docker: https://docs.docker.com/get-docker/"
+    echo "Try: sudo apt install docker"
+    echo "OR Instructions to install Docker: https://docs.docker.com/get-docker/"
     exit 1
 fi
 
 # Check if Docker Compose is installed
 if ! command -v docker-compose &> /dev/null; then
     echo "Error: Docker Compose is not installed. Please install Docker Compose to continue."
-    echo "Instructions to install Docker Compose: https://docs.docker.com/compose/install/"
+    echo "Try: sudo apt install docker-compose"
+    echo "OR Instructions to install Docker Compose: https://docs.docker.com/compose/install/"
     exit 1
 fi
 
