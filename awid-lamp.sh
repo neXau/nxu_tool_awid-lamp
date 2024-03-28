@@ -47,7 +47,6 @@ rm -rf *
 curl -L https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > wp-cli.phar
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/bin/wp
-wp --allow-root --version
 cd /var/ && chown -R root:www-data www && chmod -R 777 www
 exit
 "
@@ -66,10 +65,9 @@ touch .htaccess
 exit
 "
 # Clean up
-sudo docker exec -it lamp-php8 bash -c "cd /var/ && chown -R root:www-data www && chmod -R 777 www"
+sudo docker exec -it $COMPOSE_PROJECT_NAME$PHPVERSION bash -c "cd /var/ && chown -R www-data:root www && chmod -R 777 www"
 
 echo "WordPress setup is complete!"
-xdg-open http:/localhost/
+xdg-open http:/localhost:$HOST_MACHINE_UNSECURE_HOST_PORT/
 
 sleep 5
-
