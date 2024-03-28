@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Check if Docker is installed
+if ! command -v docker &> /dev/null; then
+    echo "Error: Docker is not installed. Please install Docker to continue."
+    echo "Instructions to install Docker: https://docs.docker.com/get-docker/"
+    exit 1
+fi
+
+# Check if Docker Compose is installed
+if ! command -v docker-compose &> /dev/null; then
+    echo "Error: Docker Compose is not installed. Please install Docker Compose to continue."
+    echo "Instructions to install Docker Compose: https://docs.docker.com/compose/install/"
+    exit 1
+fi
+
 # Ask the user for the project directory name
 read -p "Enter the project directory name: " project_name
 
