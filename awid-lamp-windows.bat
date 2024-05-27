@@ -44,18 +44,15 @@ REM ==================================================================
 REM Step 2: Open a new terminal window and execute docker-compose up
 REM ==================================================================
 
-start cmd /k "docker-compose up"
+start "" cmd /c "docker-compose up & echo Docker containers are now up and running! > containers_ready.txt"
 
 REM Wait for the containers to be fully up and running
 echo Waiting for Docker containers to start...
 :waitloop
-for /f "tokens=*" %%a in ('docker ps -q') do (
-    timeout /t 30 >nul
+if not exist "containers_ready.txt" (
+    timeout /t 5 >nul
     goto waitloop
 )
-
-REM Containers are up and running
-echo Docker containers are now up and running!
 
 REM ==================================================================
 REM Step 3: Install WP-CLI
@@ -83,6 +80,7 @@ wp core install --url=localhost --title=%project_name% --admin_user=admin --admi
 touch .htaccess
 exit
 "
+
 REM Clean up
 docker exec -it %COMPOSE_PROJECT_NAME%%PHPVERSION% bash -c "cd /var/ && chown -R root:www-data www && chmod -R 777 www"
 
