@@ -81,7 +81,7 @@ touch .htaccess
 exit
 "
 # Clean up
-sudo docker exec -it $COMPOSE_PROJECT_NAME$PHPVERSION bash -c "cd /var/ && chown -R www-data:root www && chmod -R 777 www"
+sudo docker exec -it $COMPOSE_PROJECT_NAME$PHPVERSION bash -c "cd /var/ && chown -R root:www-data www && chmod -R 777 www"
 
 echo "WordPress setup is complete!"
 xdg-open http:/localhost:$HOST_MACHINE_UNSECURE_HOST_PORT/
